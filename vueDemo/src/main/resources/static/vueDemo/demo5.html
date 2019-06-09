@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>v-on:事件修饰符</title>
+
+		<script src="js/vuejs-2.5.16.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			<form @submit.prevent="formSubmit" action="https://www.baidu.com" method="get">
+				<input type="text" v-model="username"><br>
+				<input type="submit" value="提交">
+			</form>
+
+			<div @click="fun1">
+				<a   @click.stop href="https://www.baidu.com">baidu</a>
+			</div>
+		</div>
+	</body>
+	<script>
+		//view model
+		new Vue({
+			el:"#app",
+			data:{
+			    username:""
+			},
+			methods:{
+                formSubmit:function (e) {
+					console.log(this.username)
+                },
+				fun1:function (e) {
+					console.log(e)
+                }
+			}
+		})
+		
+		
+	</script>
+
+</html>

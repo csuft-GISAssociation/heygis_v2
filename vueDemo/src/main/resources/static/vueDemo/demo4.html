@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>v-on:mouseover</title>
+		<style>
+			#div {
+				background-color: red;
+				width: 300px;
+			}
+		</style>
+		<script src="js/vuejs-2.5.16.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			<div @mouseover="fun1" id="div">
+				<textarea @mouseover="fun2($event)">这是一个文件域</textarea>
+			</div>
+		</div>
+	</body>
+	<script>
+		//view model
+		new Vue({
+			el:"#app",
+			methods:{
+				fun1:function(){
+					alert("div区域")
+				},
+				fun2:function(event){
+					alert("textare区域")
+					event.stopPropagation();//阻止冒泡
+				}
+			}
+		})
+		
+	</script>
+
+</html>

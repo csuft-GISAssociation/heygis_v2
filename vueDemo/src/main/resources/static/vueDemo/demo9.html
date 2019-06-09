@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>v-text与v-html在v-bind上的使用</title>
+		<script src="js/vuejs-2.5.16.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<font  size="5" v-bind:color="color1">snake8859</font>
+			<a v-bind={href:"https://www.baidu.com/"+id}>百度</a>
+		</div>
+	</body>
+	<script>
+		//view model
+		new Vue({
+			el:"#app",
+			data:{
+			    color1:"red",
+				id:1
+			}
+		})
+	</script>
+</html>

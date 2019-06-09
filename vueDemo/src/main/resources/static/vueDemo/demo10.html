@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>v-for遍历数组</title>
+		<script src="js/vuejs-2.5.16.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<li v-for="(item,index) in list">{{item+"    "+index}}</li>
+			</ul>
+
+			<ul>
+				<li v-for="(key,value) in user">{{key+"    "+value}}</li>
+			</ul>
+
+			<table border="1">
+					<tr>
+						<td>id</td>
+						<td>用户名</td>
+						<td>性别</td>
+					</tr>
+					<tr v-for="user in userList">
+						<td>{{user.id}}</td>
+						<td>{{user.username}}</td>
+						<td>{{user.sex}}</td>
+					</tr>
+
+			</table>
+		</div>
+	</body>
+	<script>
+		//view model
+		new Vue({
+			el:"#app",
+			data:{
+			    //集合变量
+			    list:['a','b','c','d','e','f','g'],
+				//对象遍历
+				user:{
+			        username:"123",
+					password:"456"
+				},
+				//对象数组变量
+				userList:[
+				    {
+				     	id:1,
+						username:"snake8859",
+						sex:"男"
+					},
+					{
+					    id:2,
+						username:"fufu",
+						sex:"女"
+					}
+					]
+			}
+		})
+	</script>
+</html>

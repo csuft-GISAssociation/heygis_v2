@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>v-on:keydown</title>
+		<script src="js/vuejs-2.5.16.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			<input type="text" v-on:keydown="fun($event)">
+		</div>
+	</body>
+	<script>
+		//view model
+		new Vue({
+			el:"#app",
+			methods:{
+			    fun:function (event) {
+					// console.log(event)
+					//键盘输入在0-9之间，不能输出
+					if(event.key>0||event.key<9){
+					    event.preventDefault();
+					}
+                }
+			}
+		})
+	</script>
+	
+	
+
+</html>
