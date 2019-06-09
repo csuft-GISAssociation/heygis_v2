@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Test</title>
+    <script src="../js/vuejs-2.5.16.js"></script>
+    <script src="../js/axios-0.18.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <table border="1">
+        <tr>
+            <td>uid</td>
+            <td>account</td>
+        </tr>
+        <tr v-for="(user) in userList">
+            <td>{{user.uid}}</td>
+            <td>{{user.account}}</td>
+        </tr>
+    </table>
+</div>
+<script src="../js/test.js"></script>
+</body>
+</html>
