@@ -1,0 +1,78 @@
+html,body{
+	background: url(/img/swirl_pattern.png);
+}
+.message {
+	margin: 0 auto;
+	padding-bottom: 20px;
+	margin-bottom: 25px;
+}
+.face img{
+	width: 50px;
+	height: 50px;
+}
+.message .face {
+	width: 50px;
+	float: left;
+	text-align: center;
+}
+
+.message .messagebox {
+	text-align: left;
+	margin-left: 60px;
+	padding: 10px;
+	border: 1px solid #eee;
+	border-left-width: 5px;
+	border-radius: 3px;
+	border-left-color: #D8D8D8;
+	position: relative;
+	background-color: white;
+}
+
+.message .messagebox .name {
+	color: #428bca;
+}
+
+.message .messagebox .date {
+	color: #AAB2B8;
+}
+
+.message .messagebox .content {
+	white-space: normal;
+	word-wrap: break-word;
+}
+
+.triangle {
+	position: absolute;
+	display: block;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	line-height: 0;
+	font-size: 0;
+	border-bottom: 8px solid rgba(255, 255, 255, 0.00);
+	border-top: 8px solid rgba(255, 255, 255, 0.00);
+	border-left: none;
+	border-right: 8px solid #D8D8D8;
+	margin-left: -20px;
+	margin-top: 5px;
+}
+.form-group {
+	margin-bottom: 15px
+}
+.form-control{
+	min-width: 100%;
+	max-width: 100%;
+	height: 100px;
+}
+
+#inContent{
+	display: none;
+}
+.inForm-control{
+	min-width: 100%;
+	max-width: 100%;
+	height: 50px;
+}
+#inForm,#form {
+	margin: auto;
+}

@@ -1,0 +1,10 @@
+html{
+	background: url(../img/seamless_paper_texture.png);
+}
+body{
+	background: url(../img/seamless_paper_texture.png);
+}
+.judge{
+	padding-left:0px;
+	text-align:left;
+}

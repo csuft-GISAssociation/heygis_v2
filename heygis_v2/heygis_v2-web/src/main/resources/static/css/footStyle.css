@@ -1,0 +1,46 @@
+.footer{
+	text-align: center;
+	background-color: #222222;
+	font-size: 80%;
+	margin-bottom: 0px;
+}
+
+.footer a{
+	color: #CCCCCC;
+	text-decoration: none; 
+}
+.footer span{
+	color: #CCCCCC;
+}
+.foot{
+	margin: auto;
+}
+.footh1{
+	padding: 0px;
+	text-align: left;
+	color: white;
+	font-size: 200%;
+}
+.foot-left{
+	margin-bottom: 30px;
+	font-size: 120%;
+	padding-top: 15px;
+	text-align: left;
+	color: white;
+}
+.foot-right{
+	margin-bottom: 30px;
+	font-size: 120%;
+	padding-top: 15px;
+	text-align: left;
+	color: white;
+}
+.shenming{
+	text-align: center;
+	margin-bottom: 30px;
+	color: #CCCCCC;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	
+}
+

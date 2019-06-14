@@ -2,14 +2,12 @@ package com.heygis.controller.test;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.heygis.pojo.Users;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.heygis.pojo.User;
 import com.heygis.service.UserService;
 
 /**
@@ -31,13 +29,13 @@ public class TestController {
 	 */
 	@RequestMapping("/test")
 	@ResponseBody
-	public List<User> test(){
+	public List<Users> test(){
 		return userService.queryUserList();
 	}
 
-	@RequestMapping("/vueTest")
+	/*@RequestMapping("/vueTest")
 	public  String vueTest(){
 		return  "VueTest";
-	}
+	}*/
 	
 }

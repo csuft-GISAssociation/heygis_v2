@@ -1,0 +1,7 @@
+html body{
+	background: url(../img/old_wall.jpg);
+}
+.boxsha{
+	background: white;
+	box-shadow: 5px 5px 20px #B1B0B0;
+}

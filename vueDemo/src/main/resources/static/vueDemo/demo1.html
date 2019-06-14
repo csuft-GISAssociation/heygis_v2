@@ -4,23 +4,20 @@
 		<meta charset="utf-8" />
 		<title>快速入门</title>
 		<script src="js/vuejs-2.5.16.js"></script>
+		<script src="js/test.js"></script>
 	</head>
 	<body>
-		<div id="app">
-			{{message}}
+		<div id ="app">
+				{{message}}
 		</div>
 	</body>
 	<script>
 		//view model
-        /**
-		 * 将app区域交由vue接管，并绑定数据message
-         */
 		new Vue({
 			el:"#app",
 			data:{
-			    message:"hello vue"
+				message:"123"
 			}
 		})
-		
 	</script>
 </html>

@@ -1,0 +1,55 @@
+.suoyin{
+	color: black;
+	font-size: 150%;
+}
+#test{
+	width: 100%;
+	overflow-x:scroll;
+	 height: 120px; 
+	 overflow-y: hidden;
+	 white-space:nowrap; 
+	 margin: 0px;
+	 background-color: #cccccc;
+}
+#showornot{
+	float: left;
+}
+#suoyidiv{
+	overflow-x: auto;
+	
+}
+#test img{
+	background-image: url(../img/bbs-1.JPG);
+	height: 100px;
+	filter:alpha(opacity=50);
+	opacity:0.5;
+}
+#test a{
+	position: relative;
+	
+	text-align: center;
+}
+#test a>span{
+	position: absolute;
+	left: 0%;
+	right: 0%;
+	bottom: 0%;
+	top: 0%;
+	z-index: 999;
+	font-size: 150%;
+	font-weight: bold;
+	color: #000000;
+}
+#test img:hover{
+	filter:alpha(opacity=100);
+	opacity:1;
+}
+
+@media only screen and (max-width:400px){
+	.heygis{
+		font-size: 80%;
+	}
+	.heygis1{
+		font-size: 100%;
+	}
+}

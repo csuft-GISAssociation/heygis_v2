@@ -1,0 +1,83 @@
+html,
+body {
+	height: 100%;
+	background-color: #2E3141;
+	text-align: center;
+	font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft YaHei", sans-serif;
+}
+img{
+	margin: 0px !important;
+	padding: 0px !important;
+}
+.site-wrapper {
+	display: table;
+	width: 100%;
+	height: 100%;
+	/* For at least Firefox */
+	min-height: 100%;
+	-webkit-box-shadow: inset 0 0 100px rgba(0, 0, 0, .5);
+	box-shadow: inset 0 0 100px rgba(0, 0, 0, .5);
+}
+
+.site-wrapper-inner {
+	display: table-cell;
+	vertical-align: top;
+	background-image: url(https://unsplash.imgix.net/photo-1422022098106-b3a9edc463af?w=1024&q=50&fm=jpg&s=bbe0beb19ba846e0de37abd1f63acf13);
+	background-attachment: fixed;
+}
+
+.heygis {
+	font-size: 170%;
+}
+
+.area {
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100% 100%;
+	background-size: cover;
+}
+
+.innered {
+	color:white;
+	margin-top: 15%;
+}
+
+.cover-container {
+	margin-right: auto;
+	margin-left: auto;
+}
+.newMsgMark{
+	padding:8px;
+	border:0px;
+	margin-left:-18px;
+	z-index:99;
+}
+.badge{
+	background-color:red !important;
+}
+@media screen and (max-width: 980px) {
+	body,
+	input,
+	select,
+	textarea {
+		font-size: 12pt;
+	}
+}
+
+@media screen and (max-width: 736px) {
+	body,
+	input,
+	select,
+	textarea {
+		font-size: 12pt;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	body,
+	input,
+	select,
+	textarea {
+		font-size: 9pt;
+	}
+}

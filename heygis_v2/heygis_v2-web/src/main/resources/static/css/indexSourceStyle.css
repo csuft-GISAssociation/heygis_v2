@@ -1,0 +1,93 @@
+.box{
+	padding: 0px;
+	height: 170px;
+}
+.footer-box {
+	margin:0px;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	color: #b2aaa4;
+	-webkit-transition: all 0.2s ease;
+	-moz-transition: all 0.2s ease;
+	background-position: 320px 50%;
+	background-repeat: no-repeat;
+	text-decoration: none;
+	padding-left: 40px;
+}
+
+.footer-box h5 {
+	text-align: left;
+	font: bold 24px !important;
+	text-transform: uppercase;
+	font-size: 38px;
+	line-height: 1;
+	padding: 20px 0 5px 0;
+}
+
+.footer-box:hover h5 {
+	text-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+	color: white;
+	text-decoration: none;
+}
+
+.footer-box:hover p {
+	color: white;
+	text-decoration: none;
+}
+
+.footer-box p {
+	text-align: left;
+	font-size: 12px;
+	width: 175px;
+	line-height: 1.5;
+}
+
+.footer-box:hover {
+	background-position: 200px 50%;
+	text-decoration: none;
+}
+
+#f-diw {
+	background-image: url(http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-8/images/css-tricks.png);
+	background-position: 290px -1288px;
+}
+
+#f-diw:hover {
+	background-color: #237abe;
+	background-position: 186px -1288px;
+}
+
+#f-qod {
+	background-image: url(http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-8/images/css-tricks.png);
+	background-position: 290px -1448px;
+}
+
+#f-qod:hover {
+	background-color: #37597a;
+	background-position: 186px -1448px;
+}
+
+#f-htmlipsum {
+	background-image: url(http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-8/images/css-tricks.png);
+	background-position: 290px -1608px;
+}
+
+#f-htmlipsum:hover {
+	background-color: #333333;
+	background-position: 186px -1608px;
+}
+
+#f-qod:hover p {
+	color: #adbde3;
+}
+
+#f-bookshelf {
+	background-image: url(http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-8/images/css-tricks.png);
+	background-position: 290px -1768px;
+}
+
+#f-bookshelf:hover {
+	background-color: #ff8400;
+	background-position: 186px -1768px;
+}

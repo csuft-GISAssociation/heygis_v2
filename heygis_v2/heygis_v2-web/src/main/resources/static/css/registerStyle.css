@@ -1,0 +1,23 @@
+.marTop{
+	padding-top: 100px;
+	height: 100%;
+}
+.Top{
+	margin-top: 100px;
+}
+
+
+.title{
+	padding-bottom: 20px;
+}
+.textRight{
+	text-align: right;
+}
+html,body{
+	background: url(../img/old_wall.jpg);
+}
+.judge{
+	padding-left:0px;
+}
+
+

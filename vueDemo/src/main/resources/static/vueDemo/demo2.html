@@ -8,7 +8,7 @@
 	<body>
 		<div id="app">
 			{{message}}  
-			<button @click="fun1('vue click')">vue的onclick</button>
+			<button v-on:click="fun($event)" value="切换">切换</button>
 		</div>
 	</body>
 	<script>
@@ -19,11 +19,16 @@
 			    message:"hello vue"
 			},
 			methods:{
-			    fun1:function (data) {
-					console.log(data)
-					this.message = data
-                }
+				fun:function(event){
+					console.log(event)
+					this.message="456"
+					
+				},
+			},
+			created:function(){
+					console.log("创建vue对象")
 			}
+		
 		})
 	</script>
 </html> 
