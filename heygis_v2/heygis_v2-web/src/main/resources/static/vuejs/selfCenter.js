@@ -119,10 +119,18 @@ new Vue({
         axios.get('/user/getSelfInfo')
         .then(function(res){{
             //console.log(res)
-            that.user = res.data.data
+            if(res.data.status==200){
+                that.user = res.data.data
+            }
+            else{
+                //用户未登录或者登陆过去，跳回首页
+                window.location.href="http://localhost:8988/index.html"
+            }
         }})
         .catch(function(err){
             console.log(err)
+             //cookie不存在，跳回首页
+             window.location.href="http://localhost:8988/index.html"
         })
 
 

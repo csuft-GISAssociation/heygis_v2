@@ -8,6 +8,7 @@ import java.io.Serializable;
 public class TempUser implements Serializable {
 
 
+    private static final long serialVersionUID = -7038035079604632377L;
     private String account;
     private String password;
     private String nickname;

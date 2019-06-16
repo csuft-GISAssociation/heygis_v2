@@ -6,6 +6,10 @@ import java.io.Serializable;
  * 论坛言论表
  */
 public class ForumPost extends ForumPostKey  implements Serializable {
+
+
+    private static final long serialVersionUID = -1312325692384617926L;
+
     private Integer pid;
 
     private Integer fid;

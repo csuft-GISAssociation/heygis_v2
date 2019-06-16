@@ -6,6 +6,8 @@ import java.io.Serializable;
  * 资源类型表
  */
 public class SourceType  implements Serializable {
+    private static final long serialVersionUID = -8027959769953065359L;
+
     private Integer tid;
 
     private String type;

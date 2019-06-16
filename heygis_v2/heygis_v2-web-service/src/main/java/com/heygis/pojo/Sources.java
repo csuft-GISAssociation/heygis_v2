@@ -6,21 +6,23 @@ import java.io.Serializable;
  * 资源表
  */
 public class Sources  implements Serializable {
+    private static final long serialVersionUID = -6041918458761329529L;
+
     private Integer id;
 
     private String name;
 
     private String introduction;
 
-    private String fileSize;
+    private String file_size;
 
-    private String downloadLink;
+    private String download_link;
 
-    private String downloadLinkOffical;
+    private String download_link_offical;
 
-    private String uploadTime;
+    private String upload_time;
 
-    private Integer downloadTimes;
+    private Integer download_times;
 
     private String level;
 
@@ -41,7 +43,7 @@ public class Sources  implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public String getIntroduction() {
@@ -49,47 +51,47 @@ public class Sources  implements Serializable {
     }
 
     public void setIntroduction(String introduction) {
-        this.introduction = introduction == null ? null : introduction.trim();
+        this.introduction = introduction;
     }
 
-    public String getFileSize() {
-        return fileSize;
+    public String getFile_size() {
+        return file_size;
     }
 
-    public void setFileSize(String fileSize) {
-        this.fileSize = fileSize == null ? null : fileSize.trim();
+    public void setFile_size(String file_size) {
+        this.file_size = file_size;
     }
 
-    public String getDownloadLink() {
-        return downloadLink;
+    public String getDownload_link() {
+        return download_link;
     }
 
-    public void setDownloadLink(String downloadLink) {
-        this.downloadLink = downloadLink == null ? null : downloadLink.trim();
+    public void setDownload_link(String download_link) {
+        this.download_link = download_link;
     }
 
-    public String getDownloadLinkOffical() {
-        return downloadLinkOffical;
+    public String getDownload_link_offical() {
+        return download_link_offical;
     }
 
-    public void setDownloadLinkOffical(String downloadLinkOffical) {
-        this.downloadLinkOffical = downloadLinkOffical == null ? null : downloadLinkOffical.trim();
+    public void setDownload_link_offical(String download_link_offical) {
+        this.download_link_offical = download_link_offical;
     }
 
-    public String getUploadTime() {
-        return uploadTime;
+    public String getUpload_time() {
+        return upload_time;
     }
 
-    public void setUploadTime(String uploadTime) {
-        this.uploadTime = uploadTime == null ? null : uploadTime.trim();
+    public void setUpload_time(String upload_time) {
+        this.upload_time = upload_time;
     }
 
-    public Integer getDownloadTimes() {
-        return downloadTimes;
+    public Integer getDownload_times() {
+        return download_times;
     }
 
-    public void setDownloadTimes(Integer downloadTimes) {
-        this.downloadTimes = downloadTimes;
+    public void setDownload_times(Integer download_times) {
+        this.download_times = download_times;
     }
 
     public String getLevel() {
@@ -97,7 +99,7 @@ public class Sources  implements Serializable {
     }
 
     public void setLevel(String level) {
-        this.level = level == null ? null : level.trim();
+        this.level = level;
     }
 
     public String getUploader() {
@@ -105,7 +107,7 @@ public class Sources  implements Serializable {
     }
 
     public void setUploader(String uploader) {
-        this.uploader = uploader == null ? null : uploader.trim();
+        this.uploader = uploader;
     }
 
     public String getType() {
@@ -113,6 +115,6 @@ public class Sources  implements Serializable {
     }
 
     public void setType(String type) {
-        this.type = type == null ? null : type.trim();
+        this.type = type;
     }
 }

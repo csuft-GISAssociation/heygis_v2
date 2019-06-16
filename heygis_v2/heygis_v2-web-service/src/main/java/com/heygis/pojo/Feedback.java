@@ -6,6 +6,10 @@ import java.io.Serializable;
  * 意见反馈表
  */
 public class Feedback  implements Serializable {
+
+
+    private static final long serialVersionUID = 3886750115191090601L;
+
     private Integer id;
 
     private String account;

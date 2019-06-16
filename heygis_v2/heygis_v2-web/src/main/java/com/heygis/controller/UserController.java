@@ -131,6 +131,11 @@ public class UserController {
         return  HeyGisResult.build(203,"token不存在");
     }
 
+    /**
+     * 根据uid更新用户信息
+     * @param usersInfo
+     * @return
+     */
     @RequestMapping("/updateUserInfo")
     public HeyGisResult updateUserInfo(@RequestBody  UsersInfo usersInfo){
         //System.out.println(usersInfo);

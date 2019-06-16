@@ -6,6 +6,9 @@ import java.io.Serializable;
  * 论坛帖子表
  */
 public class ForumThread  implements Serializable {
+
+    private static final long serialVersionUID = -2150370565409309840L;
+
     private Integer tid;
 
     private Integer fid;

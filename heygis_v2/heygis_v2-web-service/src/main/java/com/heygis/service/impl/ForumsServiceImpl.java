@@ -1,10 +1,12 @@
 package com.heygis.service.impl;
 
-import org.springframework.stereotype.Service;
+
+import com.alibaba.dubbo.config.annotation.Service;
+import com.heygis.service.ForumsService;
 
 /**
  * 论坛业务层实现类
  */
 @Service
-public class ForumsServiceImpl {
+public class ForumsServiceImpl implements ForumsService {
 }

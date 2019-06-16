@@ -8,6 +8,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class PageViewCounter  implements Serializable {
+
+    private static final long serialVersionUID = 6642740984497743490L;
+
     private Integer id;
 
     private String ip;

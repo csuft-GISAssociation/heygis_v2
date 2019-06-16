@@ -6,6 +6,10 @@ import java.io.Serializable;
  * 论坛消息表
  */
 public class ForumMsg  implements Serializable {
+
+
+    private static final long serialVersionUID = -2882060277632443886L;
+
     private Integer mid;
 
     private String author;

@@ -3,9 +3,13 @@ package com.heygis.pojo;
 import java.io.Serializable;
 
 /**
- * 协会报名表
+ * 协会报名表 废弃
  */
 public class Newmember  implements Serializable {
+
+
+    private static final long serialVersionUID = -2642349752543094566L;
+
     private Integer id;
 
     private String name;
