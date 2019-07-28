@@ -10,6 +10,7 @@ public interface ResourceService {
     /**
      * 根据资源类型tpye分页查询资源信息
      * @param type
+     * @param page
      * @return
      */
     HeyGisResult queryResourcesByType(Integer type,Integer page);

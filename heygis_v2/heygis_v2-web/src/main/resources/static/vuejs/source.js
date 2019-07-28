@@ -72,7 +72,8 @@ var tempThat = this
 
 //获取资源公共方法
 function getSource(that,type,page){
-    axios.get('/resource/getSource',{
+    //axios.get('/resource/getSource',{
+    axios.get('http://localhost:8988/resource/getSource',{
         params:{
             type:type,
             page:page
@@ -96,7 +97,8 @@ function getSource(that,type,page){
             }
         }
         else{
-            window.location.href="http://localhost:8988/fail.html?message=资源获取失败"
+            //window.location.href="http://localhost:8988/fail.html?message=资源获取失败"
+            window.location.href="./fail.html?message=资源获取失败";
         }
     })
     .catch(function(err){
@@ -107,7 +109,8 @@ function getSource(that,type,page){
 
 //按条件获取资源公共方法
 function getSourceByCondition(that,type,page,condition){
-    axios.post('/resource/getSourceByCon',{
+    //axios.post('/resource/getSourceByCon',{
+    axios.post('http://localhost:8988/resource/getSourceByCon',{
             type:type,
             page:page,
             conditionId:condition.conditionId,
@@ -133,7 +136,8 @@ function getSourceByCondition(that,type,page,condition){
             }
         }
         else{
-            window.location.href="http://localhost:8988/fail.html?message=资源获取失败"
+            //window.location.href="http://localhost:8988/fail.html?message=资源获取失败";
+            window.location.href="./fail.html?message=资源获取失败";
         }
     })
     .catch(function(err){
@@ -143,7 +147,8 @@ function getSourceByCondition(that,type,page,condition){
 
 //按关键字查询
 function getSourceByKeyWord(that,type,keyWord){
-    axios.get('/resource/getSourceByKeyWord',{
+    //axios.get('/resource/getSourceByKeyWord',{
+        axios.get('http://localhost:8988/resource/getSourceByKeyWord',{
         params:{
             type:type,
             keyWord:keyWord

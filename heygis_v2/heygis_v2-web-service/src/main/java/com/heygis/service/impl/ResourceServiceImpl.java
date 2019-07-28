@@ -40,7 +40,7 @@ public class ResourceServiceImpl implements ResourceService {
         Integer size = ResourcePageBean.size;
         List<Sources> sources = sourceMapper.queryResourcesByType(type,(page-1)*size,size);
         pageBean.setSources(sources);
-        if(sources.size()>0){
+        if(sources!=null&&sources.size()>0){
             return HeyGisResult.build(200,"资源查询成功",pageBean);
         }
         return HeyGisResult.build(202,"未查询到资源");
@@ -88,7 +88,7 @@ public class ResourceServiceImpl implements ResourceService {
             pageBean.setSources(sources);
         }
         //返回结果集
-        if(sources.size()>0){
+        if(sources!=null&&sources.size()>0){
             return HeyGisResult.build(200,"按条件:"+condition.getConditionName()+"查询成功",pageBean);
         }
         return HeyGisResult.build(202,"按条件"+condition.getConditionName()+"未查询到资源");
@@ -104,7 +104,7 @@ public class ResourceServiceImpl implements ResourceService {
     public HeyGisResult queryResourcesByKeyWord(Integer type, String keyWord) {
         keyWord = "%"+keyWord+"%";
         List<Sources> sources = sourceMapper.queryResourcesByKeyWord(type,keyWord);
-        if(sources.size()>0){
+        if(sources!=null&&sources.size()>0){
             return  HeyGisResult.build(200,"关键词查询成功",sources);
         }
         return HeyGisResult.build(202,"该关键字未查询到资源");

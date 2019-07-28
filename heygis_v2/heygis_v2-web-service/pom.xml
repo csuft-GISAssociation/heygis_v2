@@ -7,6 +7,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>heygis_v2-web-service</artifactId>
+	<packaging>jar</packaging>
 
 	<dependencies>
 		<!-- springboot起步依赖 -->

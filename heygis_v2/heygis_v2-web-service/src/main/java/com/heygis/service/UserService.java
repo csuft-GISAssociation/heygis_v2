@@ -70,7 +70,7 @@ public interface UserService {
 	/**
 	 * 根据token更新用户头像
 	 * @param token
-	 * @param s
+	 * @param iconImage
 	 * @return
 	 */
 	HeyGisResult updateUserIconByToken(String token, String iconImage);

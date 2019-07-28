@@ -1,7 +1,7 @@
 package com.heygis.utils;
 
 /**
- * l6进制值字符串和Byte[]转换Util
+ * l6进制值字符串和Byte[]转换工具类
  */
 public class HexAndBytesUtil {
 

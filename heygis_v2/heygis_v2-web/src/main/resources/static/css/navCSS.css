@@ -22,7 +22,7 @@ img{
 .site-wrapper-inner {
 	display: table-cell;
 	vertical-align: top;
-	background-image: url(https://unsplash.imgix.net/photo-1422022098106-b3a9edc463af?w=1024&q=50&fm=jpg&s=bbe0beb19ba846e0de37abd1f63acf13);
+	/* background-image: url(https://unsplash.imgix.net/photo-1422022098106-b3a9edc463af?w=1024&q=50&fm=jpg&s=bbe0beb19ba846e0de37abd1f63acf13); */
 	background-attachment: fixed;
 }
 

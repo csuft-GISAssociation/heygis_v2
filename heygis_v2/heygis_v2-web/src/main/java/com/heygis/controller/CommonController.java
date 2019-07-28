@@ -18,7 +18,9 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/comm")
 @PropertySource("classpath:resource.properties")
-public class CommandController {
+//CORS跨域 开发阶段允许该域
+@CrossOrigin(origins = "http://127.0.0.1:5500")
+public class CommonController {
 
     @Reference
     private UserService userService;

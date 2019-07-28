@@ -11,15 +11,20 @@
     <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <script src="//cdn.bootcss.com/jquery.form/3.51/jquery.form.js"></script>
     <!-- <script type="text/javascript" src="js/loginJS.js"></script> -->
-    <link href="http://localhost:8988/css/navCSS.css" rel="stylesheet" type="text/css">
+    <!-- <link href="http://localhost:8988/css/navCSS.css" rel="stylesheet" type="text/css">
     <link href="http://localhost:8988/css/footStyle.css" rel="stylesheet" type="text/css">
     <link href="http://localhost:8988/css/indexSourceStyle.css" rel="stylesheet" type="text/css">
     <link href="http://localhost:8988/css/loginStyle.css" rel="stylesheet" type="text/css" />
-    <link href="http://localhost:8988/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="http://localhost:8988/css/main.css" rel="stylesheet" type="text/css" /> -->
+    <link href="./css/navCSS.css" rel="stylesheet" type="text/css">
+    <link href="./css/footStyle.css" rel="stylesheet" type="text/css">
+    <link href="./css/indexSourceStyle.css" rel="stylesheet" type="text/css">
+    <link href="./css/loginStyle.css" rel="stylesheet" type="text/css" />
+    <link href="./css/main.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
     <!-- 引入vue和axios -->
-    <script src="http://localhost:8988/vuejs/vuejs-2.5.16.js"></script>
-    <script src="http://localhost:8988/vuejs/axios-0.18.0.js"></script>
+    <script src="./vuejs/vuejs-2.5.16.js"></script>
+    <script src="./vuejs/axios-0.18.0.js"></script>
 
 
     <title>heygis-首页</title>
@@ -31,11 +36,12 @@
     <div id="components-header">
         <header-counter></header-counter>
     </div>
-    <script src="http://localhost:8988/component/headerComponent.js"></script>
+    <!-- <script src="http://localhost:8988/component/headerComponent.js"></script> -->
+    <script src="./component/headerComponent.js"></script>
     <!-- end header -->
     <!-- 轮播与口号 -->
     <div class="site-wrapper area">
-        <div class="site-wrapper-inner area">
+        <div class="site-wrapper-inner area" style="background-image: url(https://unsplash.imgix.net/photo-1422022098106-b3a9edc463af?w=1024&q=50&fm=jpg&s=bbe0beb19ba846e0de37abd1f63acf13)"
             <div class="cover-container">
                 <div class="innered">
                     <h1 class="cover-heading" style="font-size:50px">GIS协会</h1>
@@ -63,7 +69,10 @@
                     <h1 class="text-center text-primary" style="color:white">论坛区</h1>
                 </div>
                 <div class="inner">
-                    <a href="forumsServlet?fid=1&page=1" class="image"><img src="http://localhost:8988/img/bbs-1.JPG" alt="" /></a>
+                    <a href="forumsServlet?fid=1&page=1" class="image">
+                        <!-- <img src="http://localhost:8988/img/bbs-1.JPG" alt="" /> -->
+                        <img src="./img/bbs-1.JPG" alt="" />
+                    </a>
                     <div class="content">
                         <h2 class="major" onclick="window.location.href='forumsServlet?fid=1&page=1';">课程区</h2>
                         <hr />
@@ -77,7 +86,10 @@
             <!-- Two -->
             <section id="two" class="wrapper alt spotlight style2">
                 <div class="inner style22">
-                    <a href="forumsServlet?fid=2&page=1" class="image"><img src="http://localhost:8988/img/bbs-3.JPG" /></a>
+                    <a href="forumsServlet?fid=2&page=1" class="image">
+                        <!-- <img src="http://localhost:8988/img/bbs-3.JPG" /> -->
+                        <img src="./img/bbs-3.JPG" />
+                    </a>
                     <div class="content">
                         <h2 class="major" onclick="window.location.href='forumsServlet?fid=2&page=1';">讨论区</h2>
                         <hr />
@@ -91,7 +103,10 @@
             <!-- Three -->
             <section id="three" class="wrapper spotlight style3">
                 <div class="inner">
-                    <a href="forumsServlet?fid=3&page=1" class="image"><img src="http://localhost:8988/img/mainbodybgimg.jpg" alt="" /></a>
+                    <a href="forumsServlet?fid=3&page=1" class="image">
+                        <!-- <img src="http://localhost:8988/img/mainbodybgimg.jpg" alt="" /> -->
+                        <img src="./img/mainbodybgimg.jpg" alt="" />
+                    </a>
                     <div class="content">
                         <h2 class="major" onclick="window.location.href='forumsServlet?fid=3&page=1';">灌水区</h2>
                         <hr />
@@ -117,7 +132,8 @@
             </div>
             <div class="row">
                 <div class="col-md-3 col-sm-6 box">
-                    <a href="http://localhost:8988/source.html#/zjdh?page=1" id="f-diw" class="footer-box">
+                    <!-- <a href="http://localhost:8988/source.html#/zjdh?page=1" id="f-diw" class="footer-box"> -->
+                    <a href="/source.html#/zjdh?page=1" id="f-diw" class="footer-box">
                         <h5>总结大会</h5>
                         <p>
                             学长学姐离去后，他们的源码都留在了这里。
@@ -125,7 +141,8 @@
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 box">
-                    <a href="http://localhost:8988/source.html#/ktym?page=1" id="f-qod" class="footer-box">
+                    <!-- <a href="http://localhost:8988/source.html#/ktym?page=1" id="f-qod" class="footer-box"> -->
+                    <a href="/source.html#/ktym?page=1" id="f-qod" class="footer-box">
                         <h5>课堂源码</h5>
                         <p>
                             这里是你丢掉的笔记，我们帮你捡回来了，请认领！
@@ -133,7 +150,8 @@
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 box">
-                    <a href="http://localhost:8988/source.html#/kfgj?page=1" id="f-htmlipsum" class="footer-box">
+                    <!-- <a href="http://localhost:8988/source.html#/kfgj?page=1" id="f-htmlipsum" class="footer-box"> -->
+                    <a href="/source.html#/kfgj?page=1" id="f-htmlipsum" class="footer-box">
                         <h5>开发工具</h5>
                         <p>
                             各种开发软件的下载链接都整理在了这里，支持下载，有安装教程。
@@ -141,7 +159,8 @@
                     </a>
                 </div>
                 <div class="col-md-3 col-sm-6 box">
-                    <a href="http://localhost:8988/source.html#/tzqh?page=1" id="f-bookshelf" class="footer-box">
+                    <!-- <a href="http://localhost:8988/source.html#/tzqh?page=1" id="f-bookshelf" class="footer-box"> -->
+                    <a href="/source.html#/tzqh?page=1" id="f-bookshelf" class="footer-box">
                         <h5>拓展强化</h5>
                         <p>
                             如果学有余力的话，欢迎多来这里看看，下载资源学习来强化自己。
@@ -180,7 +199,8 @@
     <div id="components-footer">
         <footer-counter></footer-counter>
     </div>
-    <script src="http://localhost:8988/component/footerComponent.js"></script>
+    <!-- <script src="http://localhost:8988/component/footerComponent.js"></script> -->
+    <script src="./component/footerComponent.js"></script>
     <!-- footer end -->
     <div id="page"></div>
 </body>
@@ -194,5 +214,7 @@
 
 </html>
 <script src="//cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.10.0/js/md5.js"></script>
-<script type="text/javascript" src="http://localhost:8988/js/LBSJS.js"></script>
-<script src="http://localhost:8988/vuejs/index.js"></script>
+<!-- <script type="text/javascript" src="http://localhost:8988/js/LBSJS.js"></script>
+<script src="http://localhost:8988/vuejs/index.js"></script> -->
+<script type="text/javascript" src="./js/LBSJS.js"></script>
+<script type="text/javascript" src="./vuejs/index.js"></script>

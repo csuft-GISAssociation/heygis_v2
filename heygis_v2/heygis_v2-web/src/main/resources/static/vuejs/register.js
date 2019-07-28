@@ -31,7 +31,8 @@ new Vue({
             var regex = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g
             var account = this.user.account
             if (regex.test(account)) {
-                axios.post('/user/checkEmail',
+                //axios.post('/user/checkEmail',
+                axios.post('http://localhost:8988/user/checkEmail',
                 {
                     account:account
                 })
@@ -99,7 +100,8 @@ new Vue({
             var regex = /[\u4e00-\u9fa5_a-zA-Z0-9_]/;
             var nickName = this.user.nickName
             if (regex.test(nickName) && nickName.length < 16) {
-                axios.post('/user/checkNickName',
+                //axios.post('/user/checkNickName',
+                axios.post('http://localhost:8988/user/checkNickName',
                 {
                     nickname:nickName
                 })
@@ -116,7 +118,7 @@ new Vue({
                     }
                 })
                 .catch(function(err){
-                    console.log(err)
+                    console.log(err);
                 })
             }else{
                 that.mark4 = "<span class='glyphicon glyphicon-remove' style='color: red; width:150px' aria-hidden='true'>昵称格式不正确</span>"
@@ -150,7 +152,8 @@ new Vue({
             var that = this
             if (this.b1 && this.b2 && this.b3 && this.b4 && this.b5) {
                 //console.log("注册成功")
-                axios.post('/user/register',
+                //axios.post('/user/register',
+                axios.post('http://localhost:8988/user/register',
                 {
                     account:that.user.account,
                     password:md5(that.user.password),
@@ -161,15 +164,17 @@ new Vue({
                     console.log(res)
                     if(res.data.status==200){
                         //跳转至注册成功
-                        window.location.href="http://localhost:8988/success.html";
+                        //window.location.href="http://localhost:8988/success.html";
+                        window.location.href="./success.html";
                     }
                     if(res.data.status==201){
                         //跳转至注册失败
-                        window.location.href="http://localhost:8988/fail.html?message=注册失败";
+                        //window.location.href="http://localhost:8988/fail.html?message=注册失败";
+                        window.location.href="./fail.html?message=注册失败"
                     }
                 })
                 .catch(function(res){
-
+                    console.log(res);
                 })
             }
             else{

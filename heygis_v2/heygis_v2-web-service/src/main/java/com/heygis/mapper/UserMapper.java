@@ -70,6 +70,10 @@ public interface UserMapper {
 	 */
 	Integer updateUserIconByUid(UsersInfo usersInfo);
 
+	/**
+	 * 查询用户列表 测试
+	 * @return
+	 */
 	List<Users> queryUserList();
 
 

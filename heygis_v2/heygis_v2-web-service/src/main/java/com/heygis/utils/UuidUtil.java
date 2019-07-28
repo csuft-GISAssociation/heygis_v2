@@ -2,6 +2,9 @@ package com.heygis.utils;
 
 import java.util.UUID;
 
+/**
+ * Uuid生成工具类
+ */
 public class UuidUtil {
 
 	public static String get32UUID() {

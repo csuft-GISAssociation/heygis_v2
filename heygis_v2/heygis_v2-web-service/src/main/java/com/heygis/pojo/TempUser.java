@@ -3,7 +3,7 @@ package com.heygis.pojo;
 import java.io.Serializable;
 
 /**
- * 临时用户实体 ，包含用户表和用户信息表
+ * 临时用户实体 ，包含用户表和用户信息表部分信息
  */
 public class TempUser implements Serializable {
 

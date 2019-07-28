@@ -9,7 +9,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * MD5加密Util
+ * MD5加密工具类
  */
 public class EncodeUtil {
 

@@ -31,7 +31,8 @@ new Vue({
             var regex = /[\u4e00-\u9fa5_a-zA-Z0-9_]/;
             var nickname = this.user.nickname
             if (regex.test(nickname)) {
-                axios.post('/user/checkNickName',
+                //axios.post('/user/checkNickName',
+                axios.post('http://localhost:8988/user/checkNickName',
                     {
                         nickname: nickname
                     })
@@ -130,7 +131,8 @@ new Vue({
                 //获取性别选项
                 var gender = $("input[name='optionsRadios']:checked").val()
                 //console.log()
-                axios.post("/user/updateUserInfo",{
+                //axios.post("/user/updateUserInfo",{
+                axios.post("http://localhost:8988/user/updateUserInfo",{
                     uid:that.user.uid,
                     account: that.user.account,
                     nickname: that.user.nickname,
@@ -145,10 +147,12 @@ new Vue({
                         console.log(res)
                         if(res.data.status==200){
                             //跳回个人中心
-                            window.location.href="http://localhost:8988/selfCenter.html";
+                            //window.location.href="http://localhost:8988/selfCenter.html";
+                            window.location.href="./selfCenter.html";
                         }else{
                             //跳转失败
-                            window.location.href="http://localhost:8988/fail.html?message=个人信息完善失败";
+                            //window.location.href="http://localhost:8988/fail.html?message=个人信息完善失败";
+                            window.location.href="./fail.html?message=个人信息完善失败";
                         }
                 })
                 .catch(function(err){
@@ -163,7 +167,8 @@ new Vue({
     created: function () {
         //console.log("初始化数据")
         var that = this
-        axios.get('/user/getSelfInfo')
+        //axios.get('/user/getSelfInfo')
+        axios.get('http://localhost:8988/user/getSelfInfo')
             .then(function (res) {
                 {
                     //console.log(res)

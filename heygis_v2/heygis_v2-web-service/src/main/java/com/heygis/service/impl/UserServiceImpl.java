@@ -27,7 +27,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 @Service
 public class UserServiceImpl implements UserService {
 
-
 	//用户持久层对象
 	@Autowired
 	private UserMapper userMapper;
@@ -72,8 +71,7 @@ public class UserServiceImpl implements UserService {
 		}
 		//登录成功
 		//生成token
-		String token
-				= UUID.randomUUID().toString();
+		String token = UUID.randomUUID().toString();
 		//将用户信息保存到redis中，key为token，value是用户信息
 		String key = "SESSION:"+token;
 		Gson gson = new Gson();
@@ -140,27 +138,36 @@ public class UserServiceImpl implements UserService {
 		//将字节使用Base64编码
 		password = EncodeUtil.encoderByBase64(pwBytes);
 		user.setPassword(password);
-		//插入用户表，返回影响条数
-		Integer i = userMapper.insertUsers(user);
-		//System.out.println(user);
-		//获取uid
-		Integer uid = user.getUid();
-		//1.事务控制，若用户表插入失败，会回滚
-		//2.用返回影响条数i控制，若i>0，说明插入成功
-		Integer j = 0;
-		if(i>0){
-			//获得用户信息表实体
-			UsersInfo userInfo = tempUser.createUserInfo();
-			//设置默认属性
-			userInfo.setUid(uid);
-			userInfo.setAccount(user.getAccount());
-			userInfo.setMail(user.getAccount());
-			j = userMapper.insertUsersInfo(userInfo);
-			if(j > 0){
-				return  HeyGisResult.build(200,"用户注册成功");
+		try {
+			//插入用户表，返回影响条数
+			Integer i = userMapper.insertUsers(user);
+			//System.out.println(user);
+			//获取uid
+			Integer uid = user.getUid();
+			//1.事务控制，若用户表插入失败，会回滚
+			//2.用返回影响条数i控制，若i>0，说明插入成功
+			if(i>0){
+				//获得用户信息表实体
+				UsersInfo userInfo = tempUser.createUserInfo();
+				//设置默认属性
+				userInfo.setUid(uid);
+				userInfo.setAccount(user.getAccount());
+				userInfo.setMail(user.getAccount());
+				Integer j = userMapper.insertUsersInfo(userInfo);
+				return HeyGisResult.build(200, "用户注册成功");
+				//暫不使用
+				/*if(j > 0){
+					return  HeyGisResult.build(200,"用户注册成功");
+				}*/
+			} else {
+				return HeyGisResult.build(201, "用户注册失败");
 			}
 		}
-		return HeyGisResult.build(201,"用户注册失败");
+		catch (Exception e) {
+			e.printStackTrace();
+			return HeyGisResult.build(201, "用户注册失败,第一次插入失败");
+		}
+
 	}
 
     /**
@@ -180,7 +187,7 @@ public class UserServiceImpl implements UserService {
             UsersInfo usersInfo = userMapper.queryUserInfoByUid(user.getUid());
             return HeyGisResult.build(200,"获取用户基本信息成功",usersInfo);
         }
-        return HeyGisResult.build(201,"redis过期");
+        return HeyGisResult.build(201,"token过期");
     }
 
     /**
@@ -190,11 +197,17 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public HeyGisResult updateUserInfoByUid(UsersInfo usersInfo) {
-        Integer i = userMapper.updateUserInfoByUid(usersInfo);
-        if(i>0){
-            return HeyGisResult.build(200,"用户基本信息更新成功");
-        }
-        return HeyGisResult.build(201,"用户基本信息更新失败");
+    	try {
+			Integer i = userMapper.updateUserInfoByUid(usersInfo);
+			return HeyGisResult.build(200,"用户基本信息更新成功");
+			//暫不使用
+			/*if(i>0){
+				return HeyGisResult.build(200,"用户基本信息更新成功");
+			}*/
+		}catch (Exception e){
+    		e.printStackTrace();
+			return HeyGisResult.build(201,"用户基本信息更新失败");
+		}
     }
 
 	/**
@@ -215,17 +228,24 @@ public class UserServiceImpl implements UserService {
 			UsersInfo usersInfo = new UsersInfo();
 			usersInfo.setUid(user.getUid());
 			usersInfo.setIcon_img(iconImage);
-			//更新用户头像
-			Integer i = userMapper.updateUserIconByUid(usersInfo);
-			if(i>0){
+			try {
+				//更新用户头像
+				Integer i = userMapper.updateUserIconByUid(usersInfo);
 				return HeyGisResult.build(200,"用户头像更新成功");
+				//暫不使用
+				/*if(i>0){
+					return HeyGisResult.build(200,"用户头像更新成功");
+				}*/
+			}catch (Exception e){
+				e.printStackTrace();
+				return HeyGisResult.build(202,"用户头像更新失败");
 			}
 		}
-		return HeyGisResult.build(202,"用户头像更新失败");
+		return HeyGisResult.build(202,"用户头像更新失败,token过期");
 	}
 
 	/**
-	 *
+	 * 查询用户列表 测试
 	 * @return
 	 */
 	@Override

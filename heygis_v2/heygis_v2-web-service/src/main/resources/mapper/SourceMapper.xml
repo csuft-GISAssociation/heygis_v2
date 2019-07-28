@@ -4,33 +4,66 @@
 <mapper namespace="com.heygis.mapper.SourceMapper">
 
 	<select id="queryResourcesByType" resultType="Sources">
-		select * from sources where type = #{type} limit #{start},#{end}
+		SELECT
+			*
+		FROM
+			sources
+		WHERE
+			type = #{type} limit #{start},#{end}
 	</select>
 
 	<select id="queryResourcesCount" parameterType="int" resultType="long">
-		select count(*) from sources where type = #{type}
+		SELECT
+			count(*)
+		FROM
+			sources
+		WHERE
+			type = #{type}
 	</select>
 
 	<select id="queryResourcesByTime"  resultType="Sources">
-	  	select * from sources where type = #{type} ORDER BY str_to_date(upload_time,'%Y-%m-%d') desc limit #{start},#{end}
+	  	SELECT
+			*
+		FROM
+			sources
+		WHERE
+			type = #{type} ORDER BY str_to_date(upload_time,'%Y-%m-%d') desc limit #{start},#{end}
 	</select>
 
 	<select id="queryResourcesByDownloadTimes" resultType="Sources">
-		select * from sources where type = #{type} ORDER BY download_times desc limit #{start},#{end}
+		SELECT
+			*
+		FROM
+			sources
+		WHERE
+			type = #{type} ORDER BY download_times desc limit #{start},#{end}
 	</select>
 
 	<select id="queryResourcesByAlpha" resultType="Sources">
-		select * from sources where type = #{type} ORDER BY name  limit #{start},#{end}
+		SELECT
+			*
+		FROM
+			sources
+		WHERE
+			type = #{type} ORDER BY name  limit #{start},#{end}
 	</select>
 
 	<!-- 字符串数值file_size+0 变为数值类型，即可排序 -->
 	<select id="queryResourcesBySize" resultType="Sources">
-		select * from sources where type = #{type} ORDER BY file_size+0  limit #{start},#{end}
+		SELECT
+			*
+		FROM
+			sources
+		WHERE
+			type = #{type} ORDER BY file_size+0  limit #{start},#{end}
 	</select>
 
 	<select id="queryResourcesByKeyWord" resultType="Sources">
-		select * from sources where type = #{type} and  name like  #{keyWord}
+		SELECT
+			*
+		FROM
+			sources
+		WHERE
+			type = #{type} and  name like  #{keyWord}
 	</select>
-
-
 </mapper>

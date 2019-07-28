@@ -74,7 +74,8 @@ new Vue({
             //console.log(img)
             let formData = new FormData();
             formData.append("file",this.convertBase64UrlToBlob(img));
-            axios.post('/comm/uploadImg',formData,
+            //axios.post('/comm/uploadImg',formData,
+            axios.post('http://localhost:8988/comm/uploadImg',formData,
             {       
                 uid:that.user.uid
             })
@@ -85,11 +86,12 @@ new Vue({
                     location.reload();
                 }else{
                      //跳转失败
-                     window.location.href="http://localhost:8988/fail.html?message=头像上传失败";
+                     //window.location.href="http://localhost:8988/fail.html?message=头像上传失败";
+                     window.location.href="./fail.html?message=头像上传失败";
                 }
             })
             .catch(function(err){
-                
+                console.log(err)
             })
             return false
         },
@@ -113,10 +115,10 @@ new Vue({
      * 初始化用户基本信息
      */
     created:function(){
-        
         //console.log("页面初始化")
         var that = this
-        axios.get('/user/getSelfInfo')
+        //axios.get('/user/getSelfInfo')
+        axios.get('http://localhost:8988/user/getSelfInfo')
         .then(function(res){{
             //console.log(res)
             if(res.data.status==200){
@@ -124,13 +126,15 @@ new Vue({
             }
             else{
                 //用户未登录或者登陆过去，跳回首页
-                window.location.href="http://localhost:8988/index.html"
+                //window.location.href="http://localhost:8988/index.html"
+                window.location.href="./index.html";
             }
         }})
         .catch(function(err){
             console.log(err)
              //cookie不存在，跳回首页
-             window.location.href="http://localhost:8988/index.html"
+             //window.location.href="http://localhost:8988/index.html"
+             window.location.href="./index.html";
         })
 
 

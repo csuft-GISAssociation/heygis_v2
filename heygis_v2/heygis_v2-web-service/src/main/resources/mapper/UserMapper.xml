@@ -4,44 +4,89 @@
 <mapper namespace="com.heygis.mapper.UserMapper">
 
 	<select id="queryUserByAccountAndPassWord" parameterType="users" resultType="users">
-		select uid,account from users where account=#{account} and password=#{password}
+		SELECT
+			uid,
+			account
+		FROM
+			users
+		WHERE
+			account = #{account} and password=#{password}
 	</select>
 
 	<select id="checkAccount" parameterType="String" resultType="int">
-		select count(*) from users where account=#{account}
+		SELECT
+			count(*)
+		FROM
+			users
+		WHERE
+			account = #{account}
 	</select>
 
 	<select id="checkNickName" parameterType="String" resultType="int">
-		select count(*) from users_info where nickname=#{nickName}
+		SELECT
+			count(*)
+		FROM
+			users_info
+		WHERE
+			nickname = #{nickName}
 	</select>
 
 	<insert id="insertUsers" parameterType="users" >
 		<selectKey resultType="int" order="AFTER" keyProperty="uid">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
-		insert into users(account,password) values(#{account},#{password})
+		INSERT INTO users (account, PASSWORD)
+		VALUES
+		(
+		#{account},#{password})
 	</insert>
 
 	<insert id="insertUsersInfo" parameterType="users">
-		  insert into users_info (uid,account,mail,grade,nickname) values(#{uid},#{account},#{mail},#{grade},#{nickname})
+		  INSERT INTO users_info (
+			uid,
+			account,
+			mail,
+			grade,
+			nickname
+		)
+		  VALUES
+		  (
+		  #{uid},#{account},#{mail},#{grade},#{nickname})
 	</insert>
 
 	<select id="queryUserInfoByUid" parameterType="int" resultType="UsersInfo">
-		select uid,account,gender,tel,QQ,selfintroduction,icon_img,grade,nickname,name from users_info where uid=#{uid}
+		SELECT
+			uid,
+			account,
+			gender,
+			tel,
+			QQ,
+			selfintroduction,
+			icon_img,
+			grade,
+			nickname,
+			NAME
+		FROM
+			users_info
+		WHERE
+			uid = #{uid}
 	</select>
 
 	<update id="updateUserInfoByUid" parameterType="UsersInfo">
-		update users_info set nickname=#{nickname},grade=#{grade},gender=#{gender},selfintroduction=#{selfintroduction},QQ=#{qq},tel=#{tel},name=#{name} where uid=#{uid}
+		UPDATE users_info
+		SET nickname = #{nickname},grade=#{grade},gender=#{gender},selfintroduction=#{selfintroduction},QQ=#{qq},tel=#{tel},name=#{name} where uid=#{uid}
 	</update>
 
 	<update id="updateUserIconByUid" parameterType="UsersInfo">
-		update users_info set icon_img=#{icon_img} where uid=#{uid}
+		UPDATE users_info
+		SET icon_img = #{icon_img} where uid=#{uid}
 	</update>
 
 	<select id="queryUserList" resultType="users">
-		select account,uid from users
+		SELECT
+			account,
+			uid
+		FROM
+			users
 	</select>
-
-
-
 </mapper>
