@@ -1,0 +1,195 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>头部-有点</title>
+	<link rel="stylesheet" type="text/css" href="css/css.css" />
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/utils.js"></script>
+	<!-- 引入vue -->
+	<script type="text/javascript" src="../vuejs/vuejs-2.5.16.js"></script>
+	<script type="text/javascript" src="../vuejs/axios-0.18.0.js"></script>
+</head>
+
+<body>
+	<div id="sourcePage">
+		<div class="pageTop">
+			<div class="page">
+				<img src="img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
+						href="#">公共管理</a>&nbsp;-</span>&nbsp;资源添加
+			</div>
+		</div>
+		<div class="page ">
+			<!-- 上传资源样式 -->
+			<div class="banneradd bor">
+				<div class="baTop">
+					<span>上传资源</span>
+				</div>
+				<div class="baBody">
+					<div class="bbD">
+						资源名称<span style="color:red;">*</span>：<input type="text" class="input1" v-model="sources.name" />
+                    </div>
+                    <div class="bbD">
+						资源介绍：<input type="text" class="input1" v-model="sources.introduction" />
+                    </div>
+                    <div class="bbD">
+						资源大小：<input type="text" class="input1" v-model="sources.file_size" />
+                    </div>
+                    <div class="bbD">
+						本站下载地址：<input type="text" class="input1" v-model="sources.download_link" />
+                    </div>
+                    <div class="bbD">
+						官方下载地址：<input type="text" class="input1" v-model="sources.download_link_offical" />
+					</div>
+					<br>
+					<span style="color:gray">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;
+						(下载地址至少填一个)</span>
+                    <!--到时候做成选择总结大会的时候显示-->
+                    <div class="bbD">
+						年级<span style="color:red;">*</span>：
+							<select class="input1" v-model="sources.level">
+								<option value="大一">大一</option>
+								<option value="大二">大二</option>
+								<option value="大三">大三</option>
+								<option value="大四">大四</option>
+							</select>
+                    </div>
+                    <!--到时候做成选择总结大会的时候显示-->
+                    <div class="bbD">
+                        作者<span style="color:red;">*</span>：<input type="text" class="input1" v-model="sources.uploader" />
+                    </div>
+					<div class="bbD">
+						资源类型<span style="color:red;">*</span>：
+								<select class="input1" v-model="sources.type">
+									<option value="0">总结大会</option>
+									<option value="1">课堂源码</option>
+                                    <option value="2">开发工具</option>
+                                    <option value="3">拓展强化</option>
+								</select>
+					</div>
+					<div class="bbD">
+						<p class="bbDP">
+							<button v-if="sources.id==''" class="btn_ok btn_yes" href="#" v-on:click="submitSources">提交</button>
+							<button v-else class="btn_ok btn_yes" href="#" v-on:click="updateSources">修改</button>
+							<a class="btn_ok btn_no" href="/sourcesmanagement.html">取消</a>
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- 上传广告页面样式end -->
+		</div>
+	</div>
+</body>
+<script>
+	new Vue({
+		el:"#sourcePage",
+		data:{
+			sources:{
+				id:"",
+				name:"",
+				introduction:"",
+				file_size:"",
+				download_link:"",
+				download_link_offical:"",
+				level:"",
+				uploader:"",
+				type:""
+			}
+		},
+		methods:{
+			//提交
+			submitSources:function(){
+				var that = this;
+				//console.log(that.sources);
+				if(this.sources.name!=""&&(this.sources.download_link!=""||this.sources.download_link_offical!="")&&this.sources.level!=""&&this.sources.uploader!=""&&this.sources.type!=""){
+					axios.post("http://localhost:8989/system/addSources",{
+						name:that.sources.name,
+						introduction:that.sources.introduction,
+						file_size:that.sources.file_size,
+						download_link:that.sources.download_link,
+						download_link_offical:that.sources.download_link_offical,
+						level:that.sources.level,
+						uploader:that.sources.uploader,
+						type:that.sources.type
+					})
+					.then(function(res){
+						//console.log(res);
+						if(res.data.status==200){
+							window.location.href="/sourcesmanagement.html";
+						}else{
+							alert("资源添加失败:"+res.data.data);
+						}
+					})
+					.catch(function(err){
+						console.log(err);
+					})
+
+				}else{
+					alert("还有内容未填写");
+				}
+			},
+			//修改
+			updateSources:function(){
+				var that = this;
+				if(this.sources.name!=""&&(this.sources.download_link!=""||this.sources.download_link_offical!="")&&this.sources.level!=""&&this.sources.uploader!=""&&this.sources.type!=""){
+					axios.post("http://localhost:8989/system/updateSources",{
+						id:that.sources.id,
+						name:that.sources.name,
+						introduction:that.sources.introduction,
+						file_size:that.sources.file_size,
+						download_link:that.sources.download_link,
+						download_link_offical:that.sources.download_link_offical,
+						level:that.sources.level,
+						uploader:that.sources.uploader,
+						type:that.sources.type
+					})
+					.then(function(res){
+						//console.log(res);
+						if(res.data.status==200){
+							window.location.href = "/sourcesmanagement.html";
+						}
+						else{
+							alert("资源更新失败:"+res.data.data);
+						}
+					})
+					.catch(function(err){
+						console.log(err);
+					})
+				}
+				else{
+					alert("还有内容未填写");
+				}
+			}
+		},
+		created:function(){
+			var that = this;
+			//获取url参数
+			var id = getQueryVariable("id");
+			if(id!=""){
+				axios.get("http://localhost:8989/system/getSourcesByID",{
+					params:{
+						id:id
+					}
+				})
+				.then(function(res){
+					//console.log(res);
+					if(res.data.status==200){
+						that.sources = res.data.data;
+					}else{
+						alert("单个资源查询失败:"+res.data.data);
+					}
+				})
+				.catch(function(err){
+					console.log(err);
+				})
+			}
+		}
+	})
+
+</script>
+</html>

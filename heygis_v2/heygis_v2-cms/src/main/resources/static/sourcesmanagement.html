@@ -1,0 +1,177 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>管理员管理-有点</title>
+	<link rel="stylesheet" type="text/css" href="css/css.css" />
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<!-- 引入vue -->
+	<script type="text/javascript" src="../vuejs/vuejs-2.5.16.js"></script>
+	<script type="text/javascript" src="../vuejs/axios-0.18.0.js"></script>
+	<!-- <script type="text/javascript" src="js/page.js" ></script> -->
+</head>
+
+<body>
+	<div id="sourceListPage">
+		<div id="pageAll">
+			<div class="pageTop">
+				<div class="page">
+					<img src="img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
+							href="#">公共管理</a>&nbsp;-</span>&nbsp;资源管理
+				</div>
+			</div>
+
+			<div class="page">
+				<!-- user页面样式 -->
+				<div class="connoisseur">
+					<div class="conform">
+						<form>
+							<div class="cfD">
+								<a class="addA" href="sourcesadd.html">上传资源&nbsp;&nbsp;+</a>
+							</div>
+						</form>
+					</div>
+					<!-- user 表格 显示 -->
+					<div class="conShow">
+						<table border="1" cellspacing="0" cellpadding="0">
+							<tr>
+								<td width="66px" class="tdColor tdC">序号</td>
+								<td width="400px" class="tdColor">资源名称</td>
+								<td width="630px" class="tdColor">本站下载地址</td>
+								<td width="630px" class="tdColor">官方下载地址</td>
+								<td width="630px" class="tdColor">资源上传时间</td>
+								<td width="630px" class="tdColor">年级</td>
+								<td width="630px" class="tdColor">上传者</td>
+								<td width="630px" class="tdColor">资源类型</td>
+								<td width="130px" class="tdColor">操作</td>
+							</tr>
+							<tr v-for="(item,index) in sourcesList">
+								<td>{{index}}</td>
+								<td>{{item.name}}</td>
+								<td>
+									<span v-if="item.download_link!=null">
+										<a v-bind:href="item.download_link">本地下载链接</a>
+									</span>
+									<!-- <span v-else>暂无下载链接</span> -->
+								</td>
+								<td>
+									<span v-if="item.download_link_offical!=''">
+										<a v-bind:href="item.download_link_offical">官方下载链接</a>
+									</span>
+									<!-- <span v-else>暂无下载链接</span> -->
+								</td>
+								<td>{{item.upload_time}}</td>
+								<td>{{item.level}}</td>
+								<td>{{item.uploader}}</td>
+								<td>{{item.type}}</td>
+								<td>
+									<a v-bind:href="'sourcesadd.html?id='+item.id"><img class="operation" src="img/update.png">
+									</a> 
+									<img class="operation delban" src="img/delete.png" v-on:click="showDelete(item.id)">
+								</td>
+							</tr>
+						</table>
+						<div class="paging">此处是分页</div>
+					</div>
+					<!-- user 表格 显示 end-->
+				</div>
+				<!-- user页面样式end -->
+			</div>
+
+		</div>
+		<!-- 删除弹出框 -->
+		<div class="banDel">
+			<div class="delete">
+				<div class="close" v-on:click="closeDelete">
+					<a><img src="img/shanchu.png" /></a>
+				</div>
+				<p class="delP1">你确定要删除此条记录吗？</p>
+				<p class="delP2">
+					<a href="#" class="ok yes" v-on:click="deleteSource">确定</a><a class="ok no" v-on:click="noDelete">取消</a>
+				</p>
+			</div>
+		</div>
+		<!-- 删除弹出框  end-->
+	</div>
+</body>
+
+<script type="text/javascript">
+
+	new Vue({
+		el:"#sourceListPage",
+		data:{
+			deleteID:"",
+			sourcesList:{
+				id:"",
+				name:"",
+				download_link:"",
+				download_link_offical:"",
+				upload_time:"",
+				level:"",
+				uploader:"",
+				type:""
+			}
+		},
+		methods:{
+			/**
+			 * 弹出删除框
+			 */ 
+			showDelete:function(id){
+				this.deleteID = id;
+				$(".banDel").show();
+			},
+			/**
+			 * 关闭弹出框
+			 */
+			closeDelete:function(){
+				$(".banDel").hide();
+			},
+			/**
+			 * 取消删除
+			 */ 
+			noDelete:function(){
+				$(".banDel").hide();
+			},
+			//确认删除
+			deleteSource:function(){
+				var that = this;
+				axios.get("http://localhost:8989/system/deleteSources",{
+					params:{
+						id:that.deleteID
+					}
+				})
+				.then(function(res){
+					//console.log(res);
+					if(res.data.status==200){
+						//删除成功
+						window.location.reload()
+					}else{
+						alert("删除失败,原因:"+res.data.data);
+					}
+				})
+				.catch(function(err){
+					console.log(err);
+				})
+			}
+		},
+		created:function(){
+			var that = this;
+			axios.get("http://localhost:8989/system/getSources")
+			.then(function(res){
+				//console.log(res);
+				if(res.data.status==200){
+					that.sourcesList = res.data.data;
+				}else{
+					alert("资源加载失败，原因："+res.data.data);
+				}
+			})
+			.catch(function(err){
+				console.log(err);
+			})
+		}
+	})
+</script>
+
+</html>

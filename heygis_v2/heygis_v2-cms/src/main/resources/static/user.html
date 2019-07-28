@@ -1,0 +1,223 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>会员管理-有点</title>
+	<link rel="stylesheet" type="text/css" href="css/css.css" />
+	<link rel="stylesheet" type="text/css" href="css/manhuaDate.1.0.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/manhuaDate.1.0.js"></script>
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<!--引入vue-->
+	<script type="text/javascript" src="vuejs/vuejs-2.5.16.js"></script>
+	<script type="text/javascript" src="vuejs/axios-0.18.0.js"></script>
+
+</head>
+
+<body>
+	<div id="userPage">
+		<div id="pageAll">
+			<div class="pageTop">
+				<div class="page">
+					<img src="img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
+							href="#">会员管理</a>&nbsp;-</span>&nbsp;会员管理
+				</div>
+			</div>
+
+			<div class="page">
+				<!-- user 页面样式 -->
+				<div class="vip">
+					<div class="conform">
+							<!-- <div class="cfD">
+								时间段：<input class="vinput mh_date" type="text"
+									readonly="true" />&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+								<input class="vinput mh_date" type="text" readonly="true" />
+							</div> -->
+							<div class="cfD">
+								<input class="addUser" v-model="searchInfo" type="text" placeholder="输入昵称" />
+								<button class="button" v-on:click="search">搜索</button>
+							</div>
+					</div>
+					<!-- user 表格 显示 -->
+					<div class="conShow">
+						<table border="1" cellspacing="0" cellpadding="0">
+							<tr>
+								<td width="70px" class="tdColor tdC">序号</td>
+								<td width="250px" class="tdColor">头像</td>
+								<td width="188px" class="tdColor">姓名</td>
+								<td width="188px" class="tdColor">昵称</td>
+								<td width="188px" class="tdColor">年龄</td>
+								<td width="188px" class="tdColor">年级</td>
+								<td width="282px" class="tdColor">QQ</td>
+								<td width="235px" class="tdColor">手机号码</td>
+								<td width="290px" class="tdColor">电子邮箱</td>
+								<td v-if="identity_id == 2" width="130px" class="tdColor">操作</td>
+							</tr>
+							<tr v-for="(item,index) in userList">
+								<td>{{index}}</td>
+								<td>
+									<div class="onsImg onsImgv">
+										<img v-bind:src="item.icon_img">
+									</div>
+								</td>
+								<td>{{item.name}}</td>
+								<td>{{item.nickname}}</td>
+								<td>{{item.age}}</td>
+								<td>{{item.grade}}</td>
+								<td>{{item.qq}}</td>
+								<td>{{item.tel}}</td>
+								<td>{{item.mail}}</td>
+								<td v-if="identity_id == 2">
+									<img class="operation delban" src="img/delete.png" v-on:click="showDelete(item.uid)">
+								</td>
+							</tr>
+						</table>
+						<div class="paging">此处是分页</div>
+					</div>
+					<!-- user 表格 显示 end-->
+				</div>
+				<!-- user 页面样式end -->
+			</div>
+
+		</div>
+
+
+		<!-- 删除弹出框 -->
+		<div class="banDel">
+			<div class="delete">
+				<div class="close" v-on:click="closeDelete">
+					<a><img src="img/shanchu.png" /></a>
+				</div>
+				<p class="delP1">你确定要删除此条记录吗？</p>
+				<p class="delP2">
+					<a href="#" class="ok yes" v-on:click="deleteUser">确定</a><a class="ok no" v-on:click="noDelete">取消</a>
+				</p>
+			</div>
+		</div>
+		<!-- 删除弹出框  end-->
+	</div>
+</body>
+
+<script type="text/javascript">
+
+	new Vue({
+		el:"#userPage",
+		data:{
+			deleteUId:"",
+			searchInfo:"",
+			identity_id:"",
+			userList:{
+				uid:"",
+				name:"",
+				nickname:"",
+				age:"",
+				grade:"",
+				QQ:"",
+				tel:"",
+				mail:""
+			}
+		},
+		methods:{
+			//弹出删除框
+			showDelete:function(uid){
+				this.deleteUId = uid;
+				$(".banDel").show();
+			},
+			//取消删除框
+			noDelete:function(){
+				$(".banDel").hide();
+			},
+			//关闭删除框
+			closeDelete:function(){
+				$(".banDel").hide();
+			},
+			//确定删除
+			deleteUser:function(){
+				var that = this;
+				console.log(that.deleteUId);
+				axios.get("http://localhost:8989/system/deleteUser",
+				{
+					params:{
+						uid:that.deleteUId
+					}	
+				})
+				.then(function(res){
+					console.log(res);
+					if(res.data.status == 200){
+						//删除成功
+						window.location.reload()
+					}
+				})
+				.catch(function(err){
+					console.log(err);
+				})
+			},
+			search:function(){
+				var that = this;
+					axios.get("http://localhost:8989/system/searchUserInfoByNickName",{
+						params:{
+							searchInfo:that.searchInfo
+						}
+					})
+					.then(function(res){
+						//console.log(res);
+						if(res.data.status == 200){
+							if(res.data.data!=null){
+								that.userList = res.data.data;
+							}else{
+								alert("未查询到用户信息");
+							}
+						}else{
+							alert("用户搜索失败");
+						}
+					})
+					.catch(function(err){
+						console.log(err);
+					})
+			}
+		},
+		created:function(){
+			var that = this;
+
+			//查询用户信息列表
+			axios.get("http://localhost:8989/system/getUserList")
+				 .then(function(res){
+					//console.log(res);
+					if(res.data.status == 200){
+						that.userList = res.data.data;
+					}else{
+						alert("资源查询失败");
+					}
+				 })
+				 .catch(function(err){
+					 console.log(err);
+				 })
+			
+			//检验用户权限
+			axios.defaults.withCredentials = true// 允许携带cookie信息
+			var that = this
+			axios.get('http://localhost:8989/system/getUserInfoByToken')
+			.then(function(res){
+				//console.log(res)
+				if(res.data.status==200){
+					//token有效,设置权限
+					that.identity_id=res.data.data.identity_id
+				}else{
+					//token失效，跳回登录界面
+					//window.top.location.href="http://localhost:8989/login.html"
+					window.top.location.href="/login.html"
+				}
+			})
+			.catch(function(err){
+				console.log(err)
+				//无token，跳回登录界面
+				//window.top.location.href="http://localhost:8989/login.html"
+				window.top.location.href="/login.html"
+			})
+		}
+	})
+</script>
+
+</html>

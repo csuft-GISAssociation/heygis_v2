@@ -1,0 +1,31 @@
+new Vue({
+    el:"#page",
+    data:{
+        user:{
+            account:"",
+            password:""
+        }
+    },
+    methods:{
+        login:function(){
+            axios.defaults.withCredentials = true// 允许携带cookie信息
+            axios.post('http://localhost:8989/system/login',{
+                account:this.user.account,
+                password:md5(this.user.password)
+            })
+            .then(function(res){
+                //console.log(res)
+                if(res.data.status==201){
+                    alert("账号或者密码错误")
+                }
+                if(res.data.status==200){
+                  //location.reload();
+                  window.location.href="/index.html"
+                }
+            })
+            .catch(function(err){
+                console.log(err)
+            })
+        }
+    }
+})

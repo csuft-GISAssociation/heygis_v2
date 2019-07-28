@@ -1,0 +1,163 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>广告-有点</title>
+	<link rel="stylesheet" type="text/css" href="css/css.css" />
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<!-- 引入vue -->
+	<script type="text/javascript" src="../vuejs/vuejs-2.5.16.js"></script>
+	<script type="text/javascript" src="../vuejs/axios-0.18.0.js"></script>
+</head>
+
+<body>
+	<div id="imageListPage">
+		<div id="pageAll">
+			<div class="pageTop">
+				<div class="page">
+					<img src="img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
+							href="#">公共管理</a>&nbsp;-</span>&nbsp;图片管理
+				</div>
+			</div>
+			<div class="page">
+				<!-- imagesources 页面样式 -->
+				<div class="banner">
+					<div class="add">
+						<a class="addA" href="imagesourcesadd.html">上传图片&nbsp;&nbsp;+</a>
+					</div>
+					<!-- imagesources 表格 显示 -->
+					<div class="banShow">
+						<table border="1" cellspacing="0" cellpadding="0">
+							<tr>
+								<td width="66px" class="tdColor tdC">序号</td>
+								<td width="315px" class="tdColor">图片</td>
+								<td width="308px" class="tdColor">资源名称</td>
+								<td width="450px" class="tdColor">资源类型</td>
+								<td width="215px" class="tdColor">是否显示</td>
+								<!-- <td width="180px" class="tdColor">排序</td> -->
+								<td width="125px" class="tdColor">操作</td>
+							</tr>
+							<tr v-for="(item,index) in imageResourceList">
+								<td>{{index}}</td>
+								<td>
+									<div class="bsImg">
+										<img v-bind:src="item.imgLink">
+									</div>
+								</td>
+								<td>{{item.imgName}}</td>
+								<td>
+									<span v-if="item.type==0">首页顶部底图</span>
+									<span v-if="item.type==1">论坛区显示图</span>
+									<span v-if="item.type==2">资源区显示图</span>
+								</td>
+								<td>
+									<span v-if="item.display==1">是</span>
+									<span v-if="item.display==0">否</span>
+									
+								</td>
+								<td>
+									<a v-bind:href="'imagesourcesadd.html?imgID='+item.imgID">
+										<img class="operation" src="img/update.png">
+									</a> 
+									<img class="operation delban" src="img/delete.png"  v-on:click="showDelete(item.imgID)">
+								</td>
+							</tr>
+						</table>
+						<div class="paging">此处是分页</div>
+					</div>
+					<!-- imagesources 表格 显示 end-->
+				</div>
+				<!-- imagesources 页面样式end -->
+			</div>
+		</div>
+
+		<!-- 删除弹出框 -->
+		<div class="banDel">
+			<div class="delete">
+				<div class="close" v-on:click="closeDelete">
+					<a><img src="img/shanchu.png" /></a>
+				</div>
+				<p class="delP1">你确定要删除此条记录吗？</p>
+				<p class="delP2">
+					<a href="#" class="ok yes" v-on:click="deleteImageResource">确定</a><a class="ok no" v-on:click="noDelete">取消</a>
+				</p>
+			</div>
+		</div>
+		<!-- 删除弹出框  end-->
+	</div>
+</body>
+
+<script type="text/javascript">
+
+	new Vue({
+		el:"#imageListPage",
+		data:{
+			deleteImgID:"",
+			imageResourceList:{
+				imgID:"",
+				imgLink:"",
+				imgName:"",
+				type:"",
+				display:"",
+				uploader:""
+			}
+		},
+		methods:{
+			//弹出删除框
+			showDelete: function (imgID) {
+				//console.log(uid)
+				this.deleteImgID = imgID
+				$(".banDel").show();
+			},
+			//关闭弹出框
+			closeDelete:function(){
+				$(".banDel").hide();
+			},
+			//取消删除
+			noDelete:function(){
+				$(".banDel").hide();
+			},
+			//确认删除
+			deleteImageResource:function(){
+				var that = this
+				axios.get('http://localhost:8989/system/deletImageResourceByImgID',{
+					params:{
+						imgID:that.deleteImgID
+					}
+				})
+				.then(function(res){
+					//console.log(res)
+					if(res.data.status==200){
+						//删除成功
+						window.location.reload()
+					}else{
+						alert("删除失败,原因:"+res.data.data)
+					}
+				})
+				.catch(function(err){
+					console.log(err)
+				})
+			}
+		},
+		created:function(){
+			var that = this
+			axios.get('http://localhost:8989/system/getImageSources')
+			.then(function(res){
+				//console.log(res)
+				if(res.data.status==200){
+					that.imageResourceList = res.data.data
+				}else{
+					alert("图片资源加载失败,原因:"+res.data.data)
+				}
+			})
+			.catch(function(err){
+				console.log(err)
+			})
+		}
+	})
+
+</script>
+
+</html>

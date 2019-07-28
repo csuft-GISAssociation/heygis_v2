@@ -1,0 +1,212 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>头部-有点</title>
+	<link rel="stylesheet" type="text/css" href="css/css.css" />
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/utils.js"></script>
+	<!-- 引入vue -->
+	<script type="text/javascript" src="../vuejs/vuejs-2.5.16.js"></script>
+	<script type="text/javascript" src="../vuejs/axios-0.18.0.js"></script>
+</head>
+
+<body>
+	<div id="imagePage">
+		<div class="pageTop">
+			<div class="page">
+				<img src="img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
+						href="#">公共管理</a>&nbsp;-</span>&nbsp;图片添加
+			</div>
+		</div>
+		<div class="page">
+			<!-- 上传图片资源样式 -->
+			<div class="banneradd bor">
+				<div class="baTop">
+					<span>上传图片</span>
+				</div>
+				<div class="baBody">
+					<div class="bbD">
+						图片名称<span style="color:red;">*</span>：<input type="text" class="input1" v-model="imageResource.imgName" />
+					</div>
+					<div class="bbD">
+						图片类型<span style="color:red;">*</span>：
+						<select class="input1" v-model="imageResource.type">
+							<option value="0" selected="true">顶部底图</option>
+							<option value="1">论坛区显示图</option>
+							<option value="2">资源区显示图</option>
+						</select>
+					</div>
+
+					<div class="bbD">
+						上传图片或资源链接<span style="color:red;">*</span>：<label><input type="radio" name="imgChose" value="img"
+								v-on:click="uploadImg" />上传图片</label>
+						<label><input type="radio" name="imgChose" value="link" v-on:click="resourceLink" />资源链接</label>
+					</div>
+
+					<div class="bbD" v-show="imgFlag">
+						上传图片<span style="color:red;">*</span>：
+						<div class="bbDd">
+							<div v-if="imageResource.imgLink==''">
+								<div class="bbDImg">+</div>
+								<input type="file" class="file" v-on:change="getFile($event)" /> <a class="bbDDel"	href="#">删除</a>
+							</div>
+							<a v-bind:href="imageResource.imgLink" target="_blank"
+								v-if="imageResource.imgLink!=''">{{imageResource.imgLink}}</a>
+
+						</div>
+					</div>
+					<div class="bbD" v-show="linkFlag">
+						资源url<span style="color:red;">*</span>：<input type="text" v-model="imageResource.imgLink" class="input1" />
+					</div>
+
+					<div class="bbD">
+						是否显示<span style="color:red;">*</span>：<label>
+							<input type="radio" name="display" value="1" v-model="imageResource.display" />
+							是</label>
+						<label>
+							<input type="radio" name="display" value="0" checked="true" v-model="imageResource.display"/>
+							否</label>
+					</div>
+					<div class="bbD">
+						<p class="bbDP">
+							<button v-if="imageResource.imgID==''" class="btn_ok btn_yes" href="#" v-on:click="submitImgResource">提交</button>
+							<button v-else class="btn_ok btn_yes" href="#" v-on:click="updateImgResource">修改</button>
+							<a class="btn_ok btn_no" href="/imagesources.html">取消</a>
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- 上传图片资源样式end -->
+		</div>
+	</div>
+</body>
+<script>
+	new Vue({
+		el: "#imagePage",
+		data: {
+			imgFlag: false,
+			linkFlag: false,
+			imageResource: {
+				imgID:"",
+				imgName: "",
+				imgLink: "",
+				display: "",
+				type: "",
+				uploader:""
+			}
+		},
+		methods: {
+			//选择上传图片
+			uploadImg: function () {
+				this.imgFlag = true
+				this.linkFlag = false
+			},
+			//选择资源链接
+			resourceLink: function () {
+				this.linkFlag = true
+				this.imgFlag = false
+			},
+			//上传图片
+			getFile: function (event) {
+				var that = this
+				let formData = new FormData();
+				formData.append("file", event.target.files[0]);
+				axios.defaults.withCredentials = true// 允许携带cookie信息
+				axios.post('http://localhost:8989/system/comm/uploadImg', formData)
+					.then(function (res) {
+						//console.log(res);
+						if (res.data.status == 200) {
+							that.imageResource.imgLink = res.data.data
+						}
+					})
+					.catch(function (err) {
+						debugger
+						alert("上传失败,文件不能超过5M");
+						console.log(err);
+					});
+			},
+			//提交
+			submitImgResource: function () {
+				var that = this
+				if (this.imageResource.imgName != "" && this.imageResource.imgLink != "" && this.imageResource.display != "" && this.imageResource.type != "") {
+					axios.post('http://localhost:8989/system/addImageResource',{
+						imgName:that.imageResource.imgName,
+						imgLink:that.imageResource.imgLink,
+						display:that.imageResource.display,
+						type:that.imageResource.type
+					})
+					.then(function(res){
+						//console.log(res)
+						if(res.data.status==200){
+							window.location.href="/imagesources.html"
+						}else{
+							alert("图片资源添加失败:"+res.data.data)
+						}
+					})
+					.catch(function(err){
+						console.log(err)
+					})
+				} else {
+					alert("还有内容未填写")
+				}
+			},
+		   //修改
+		   updateImgResource:function(){
+			var that = this
+			if (this.imageResource.imgName != "" && this.imageResource.imgLink != "" && this.imageResource.display != "" && this.imageResource.type != "") {
+					axios.defaults.withCredentials = true// 允许携带cookie信息
+					axios.post('http://localhost:8989/system/updateImageResource',{
+						imgID:that.imageResource.imgID,
+						imgName:that.imageResource.imgName,
+						imgLink:that.imageResource.imgLink,
+						display:that.imageResource.display,
+						type:that.imageResource.type,
+						uploader:that.imageResource.uploader
+					})
+					.then(function(res){
+						//console.log(res)
+						if(res.data.status==200){
+							window.location.href="/imagesources.html"
+						}else{
+							alert("图片资源更新失败:"+res.data.data)
+						}
+					})
+					.catch(function(err){
+						console.log(err)
+					})
+				} else {
+					alert("还有内容未填写")
+				}
+		   }
+		},
+		created: function () {
+			var that = this
+			//获取url参数
+			var imgID = getQueryVariable("imgID")
+			//console.log(imgID)
+			if(imgID!=""){
+				axios.get('http://localhost:8989/system/getImageResourceByImgID',{
+					params:{
+						imgID:imgID
+					}
+				})
+				.then(function(res){
+					//console.log(res)
+					if(res.data.status==200){
+						that.imageResource = res.data.data
+					}else{
+						alert("单个图片资源查询失败："+res.data.data)
+					}
+				})
+				.catch(function(err){
+					console.log(err)
+				})
+			}
+		}
+	})
+</script>
+
+</html>

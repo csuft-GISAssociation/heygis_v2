@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>头部-有点</title>
+<link rel="stylesheet" type="text/css" href="css/css.css" />
+<!-- 引入vue -->
+<script type="text/javascript" src="../vuejs/vuejs-2.5.16.js"></script>
+<script type="text/javascript" src="../vuejs/axios-0.18.0.js"></script>
+</head>
+
+<body>
+	<div id="feedbackPage">
+		<div class="pageTop">
+			<div class="page">
+				<img src="img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
+					href="#">公共管理</a>&nbsp;-</span>&nbsp;意见管理
+			</div>
+		</div>
+		<div class="page">
+			<!-- feedback 页面样式 -->
+			<div class="opinion">
+				<!-- feedback 表格 显示 -->
+				<div class="opShow">
+					<table border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="66px" class="tdColor tdC">序号</td>
+							<td width="440px" class="tdColor">反馈时间</td>
+							<td width="396px" class="tdColor">用户名</td>
+							<td width="760px" class="tdColor">内容</td>
+						</tr>
+						<tr height="40px" v-for="(item,index) in feedbacks">
+							<td>{{index}}</td>
+							<td>{{item.time}}</td>
+							<td>{{item.nickname1}}</td>
+							<td>{{item.feedbackcontent}}</td>
+						</tr>
+					</table>
+					<div class="paging">此处是分页</div>
+				</div>
+				<!-- feedback 表格 显示 end-->
+			</div>
+			<!-- 页面样式end -->
+		</div>
+	</div>
+</body>
+<script>
+	new Vue({
+		el:"#feedbackPage",
+		data:{
+			feedbacks:{
+				time:"",
+				nickname1:"",
+				feedbackcontent:""
+			}
+		},
+		methods:{
+
+		},
+		created:function(){
+			var that = this;
+			axios.get("http://localhost:8989/system/getFeedBack")
+				 .then(function(res){
+					//console.log(res);
+					if(res.data.status == 200){
+						that.feedbacks = res.data.data;
+					}
+					console.log(that.feedbacks);
+				 })
+				 .catch(function(err){
+					 console.log(err);
+				 })
+		}
+	})
+</script>
+</html>
