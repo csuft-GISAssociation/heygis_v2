@@ -1,0 +1,47 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.heygis.cms.mapper.ImageSourcesMapper">
+
+    <insert id="insertImageResource" parameterType="ImagesSources">
+        INSERT INTO images_sources (
+            imgName,
+            imgLink,
+            display,
+            type,
+            uploader
+        )
+        VALUES(
+		  #{imgName},#{imgLink},#{display},#{type},#{uploader}
+		)
+    </insert>
+
+    <select id="queryImageSources" resultType="ImagesSources">
+        SELECT
+	      *
+        FROM
+	      images_sources
+    </select>
+
+    <select id="queryImageSourceByImgID" parameterType="int" resultType="ImagesSources">
+        SELECT
+	      *
+        FROM
+	      images_sources
+        WHERE
+	      imgID = #{imgID}
+    </select>
+
+    <update id="updateImageResource" parameterType="ImagesSources">
+        UPDATE images_sources
+        SET imgName = #{imgName},imgLink=#{imgLink},display=#{display},type=#{type},uploader=#{uploader} where imgID=#{imgID}
+</update>
+
+    <delete id="deletImageResourceByImgID" parameterType="int">
+        DELETE
+        FROM
+            images_sources
+        WHERE
+            imgID = #{imgID}
+    </delete>
+
+</mapper>

@@ -1,0 +1,69 @@
+<krpano version="1.18" title="Virtual Tour" onstart="startup();">
+
+	<include url="progress_loadingbar.xml" />
+
+	<!-- set skin settings: bingmaps? gyro? thumbnails? tooltips? -->
+	<skin_settings maps="false"
+	               maps_type="bing"
+	               maps_bing_api_key=""
+	               maps_zoombuttons="false"
+	               gyro="true"
+	               title="true"
+	               thumbs="true"
+	               thumbs_width="120" thumbs_height="80" thumbs_padding="10" thumbs_crop="0|40|240|160"
+	               thumbs_opened="false"
+	               thumbs_text="false"
+	               thumbs_dragging="true"
+	               thumbs_onhoverscrolling="false"
+	               thumbs_scrollbuttons="false"
+	               thumbs_scrollindicator="false"
+	               thumbs_loop="false"
+	               tooltips_thumbs="false"
+	               tooltips_hotspots="false"
+	               tooltips_mapspots="false"
+	               loadscene_flags="MERGE"
+	               loadscene_blend="BLEND(0.5)"
+	               controlbar_offset="20"
+	               />
+
+	<!-- set optional skin logo url -->
+	<layer name="skin_logo" url="" scale="0.25" opened_onclick="openurl('...',_blank);" />
+
+
+	<action name="startup">
+		if(startscene === null, copy(startscene,scene[0].name));
+		loadscene(get(startscene), null, MERGE);
+	</action>
+
+	
+	<scene name="scene_tsg" title="tsg" onstart="" thumburl="panos/tsg.tiles/thumb.jpg" lat="" lng="" heading="">
+
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/tsg.tiles/preview.jpg" />
+
+		<image>
+			<cube url="panos/tsg.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/tsg.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
+		<events name="nadirlogorotation"
+	        onviewchange="if(hotspot[nadirlogo].rotatewithview, set(hotspot[nadirlogo].rotate,get(view.hlookat)) );"/>
+        <hotspot name="nadirlogo"
+	         url="lkd.png"
+	         ath="0.000"
+	         atv="90.000"
+	         distorted="true"
+	         scale="1.0"
+	         rotate="0.0"
+	         rotatewithview="false"
+	         onclick="switch(rotatewithview); invalidatescreen();"
+	         />
+		<!-- place your scene hotspots here -->
+	
+	</scene>
+	<autorotate enabled="true" waittime="0.5" accel="1.0" speed="5.0" horizon="0.0" tofov="90" />
+
+</krpano>

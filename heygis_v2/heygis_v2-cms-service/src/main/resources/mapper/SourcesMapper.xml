@@ -1,0 +1,60 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.heygis.cms.mapper.SourcesMapper">
+
+    <select id="querySources" resultType="Sources">
+        SELECT
+            s.id,
+            s. NAME,
+            s.download_link,
+            s.download_link_offical,
+            s.upload_time,
+            s.`level`,
+            s.uploader,
+            st.`name` AS type
+        FROM
+            sources s
+        LEFT JOIN source_type st ON s.type = st.type
+    </select>
+
+    <insert id="insertSources" parameterType="Sources">
+      INSERT INTO sources (
+        NAME,
+        introduction,
+        file_size,
+        download_link,
+        download_link_offical,
+        upload_time,
+        download_times,
+        LEVEL,
+        uploader,
+        type
+    )
+    VALUES(
+            #{name},#{introduction},#{file_size},#{download_link},#{download_link_offical},#{upload_time},#{download_times},#{level},#{uploader},#{type})
+    </insert>
+
+    <select id="querySourcesByID" parameterType="int" resultType="Sources">
+        SELECT
+            *
+        FROM
+            sources
+        WHERE
+            id = #{id}
+    </select>
+
+    <update id="updateSourcesByID" parameterType="Sources">
+      UPDATE sources
+          SET NAME = #{name},introduction=#{introduction},file_size=#{file_size},download_link=#{download_link},download_link_offical=#{download_link_offical},upload_time=#{upload_time},
+          LEVEL = #{level},uploader=#{uploader},type=#{type} where id = #{id}
+    </update>
+
+    <delete id="deleteSourcesByID" parameterType="int">
+        DELETE
+        FROM
+            sources
+        WHERE
+            id = #{id}
+    </delete>
+
+</mapper>

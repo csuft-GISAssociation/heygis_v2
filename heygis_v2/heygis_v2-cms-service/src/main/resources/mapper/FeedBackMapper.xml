@@ -1,0 +1,14 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.heygis.cms.mapper.FeedBackMapper">
+
+    <select id="queryFeedBack" resultType="FeedBack">
+        SELECT
+            nickname1,
+            time,
+            feedbackcontent
+        FROM
+            feedback
+    </select>
+
+</mapper>

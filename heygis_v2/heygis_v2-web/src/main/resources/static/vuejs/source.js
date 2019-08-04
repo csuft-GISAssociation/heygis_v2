@@ -119,7 +119,7 @@ function getSourceByCondition(that,type,page,condition){
         headers: {'Content-Type':'application/json;charset=UTF-8'}
     })
     .then(function(res){
-        console.log(res)
+        //console.log(res)
         if(res.data.status==200){
             that.sources = res.data.data.sources
             that.currentPage = res.data.data.currentPage
@@ -155,7 +155,7 @@ function getSourceByKeyWord(that,type,keyWord){
         }
     })
     .then(function(res){
-        console.log(res)
+        //console.log(res)
         if(res.data.status==200){
             that.sources = res.data.data
             that.currentPage = 1
@@ -265,7 +265,7 @@ var source1 ={
          * 根据关键字搜索
          */
         searchCho:function(){
-            console.log("关键字搜索")
+            //console.log("关键字搜索")
             this.sortName = "按条件:"+this.searchCtx
             that.getSourceByKeyWord(this,0,this.searchCtx)
         },
@@ -273,7 +273,7 @@ var source1 ={
          * 上传时间
          */
         timeCho:function(){
-            console.log("上传时间")
+            //console.log("上传时间")
             this.sortName = "按上传时间"
             var page = this.currentPage
             that.getSourceByCondition(this,0,page,this.condition[0])
@@ -282,7 +282,7 @@ var source1 ={
          * 下载次数
          */
         timesCho:function(){
-            console.log("下载次数")
+            //console.log("下载次数")
             this.sortName = "按下载次数"
             var page = this.currentPage
             that.getSourceByCondition(this,0,page,this.condition[1])
@@ -291,7 +291,7 @@ var source1 ={
          * 字母顺序
          */
         alphacho:function(){
-            console.log("字母顺序")
+            //console.log("字母顺序")
             this.sortName = "按字母顺序"
             var page = this.currentPage
             that.getSourceByCondition(this,0,page,this.condition[2])
@@ -300,7 +300,7 @@ var source1 ={
          * 文件大小
          */
         sizeCho:function(){
-            console.log("文件大小")
+            //console.log("文件大小")
             this.sortName = "按文件大小"
             var page = this.currentPage
             that.getSourceByCondition(this,0,page,this.condition[3])
@@ -403,7 +403,7 @@ var source1 ={
          * 根据关键字搜索
          */
         searchCho:function(){
-            console.log("关键字搜索")
+            //console.log("关键字搜索")
             this.sortName = "按条件:"+this.searchCtx
             that.getSourceByKeyWord(this,1,this.searchCtx)
         },
@@ -411,7 +411,7 @@ var source1 ={
          * 上传时间
          */
         timeCho:function(){
-            console.log("上传时间")
+            //console.log("上传时间")
             this.sortName = "按上传时间"
             var page = this.currentPage
             that.getSourceByCondition(this,1,page,this.condition[0])
@@ -420,7 +420,7 @@ var source1 ={
          * 下载次数
          */
         timesCho:function(){
-            console.log("下载次数")
+            //console.log("下载次数")
             this.sortName = "按下载次数"
             var page = this.currentPage
             that.getSourceByCondition(this,1,page,this.condition[1])
@@ -429,7 +429,7 @@ var source1 ={
          * 字母顺序
          */
         alphacho:function(){
-            console.log("字母顺序")
+            //console.log("字母顺序")
             this.sortName = "按字母顺序"
             var page = this.currentPage
             that.getSourceByCondition(this,1,page,this.condition[2])
@@ -438,7 +438,7 @@ var source1 ={
          * 文件大小
          */
         sizeCho:function(){
-            console.log("文件大小")
+            //console.log("文件大小")
             this.sortName = "按文件大小"
             var page = this.currentPage
             that.getSourceByCondition(this,1,page,this.condition[3])
@@ -542,7 +542,7 @@ var source1 ={
          * 根据关键字搜索
          */
         searchCho:function(){
-            console.log("关键字搜索")
+            //console.log("关键字搜索")
             this.sortName = "按条件:"+this.searchCtx
             that.getSourceByKeyWord(this,2,this.searchCtx)
         },
@@ -550,7 +550,7 @@ var source1 ={
          * 上传时间
          */
         timeCho:function(){
-            console.log("上传时间")
+            //console.log("上传时间")
             this.sortName = "按上传时间"
             var page = this.currentPage
             that.getSourceByCondition(this,2,page,this.condition[0])
@@ -559,7 +559,7 @@ var source1 ={
          * 下载次数
          */
         timesCho:function(){
-            console.log("下载次数")
+            //console.log("下载次数")
             this.sortName = "按下载次数"
             var page = this.currentPage
             that.getSourceByCondition(this,2,page,this.condition[1])
@@ -568,7 +568,7 @@ var source1 ={
          * 字母顺序
          */
         alphacho:function(){
-            console.log("字母顺序")
+            //console.log("字母顺序")
             this.sortName = "按字母顺序"
             var page = this.currentPage
             that.getSourceByCondition(this,2,page,this.condition[2])
@@ -577,7 +577,7 @@ var source1 ={
          * 文件大小
          */
         sizeCho:function(){
-            console.log("文件大小")
+            //console.log("文件大小")
             this.sortName = "按文件大小"
             var page = this.currentPage
             that.getSourceByCondition(this,2,page,this.condition[3])
@@ -680,7 +680,7 @@ var source1 ={
          * 根据关键字搜索
          */
         searchCho:function(){
-            console.log("关键字搜索")
+            //console.log("关键字搜索")
             this.sortName = "按条件:"+this.searchCtx
             that.getSourceByKeyWord(this,3,this.searchCtx)
         },
@@ -688,7 +688,7 @@ var source1 ={
          * 上传时间
          */
         timeCho:function(){
-            console.log("上传时间")
+            //console.log("上传时间")
             this.sortName = "按上传时间"
             var page = this.currentPage
             that.getSourceByCondition(this,3,page,this.condition[0])
@@ -697,7 +697,7 @@ var source1 ={
          * 下载次数
          */
         timesCho:function(){
-            console.log("下载次数")
+            //console.log("下载次数")
             this.sortName = "按下载次数"
             var page = this.currentPage
             that.getSourceByCondition(this,3,page,this.condition[1])
@@ -706,7 +706,7 @@ var source1 ={
          * 字母顺序
          */
         alphacho:function(){
-            console.log("字母顺序")
+            //console.log("字母顺序")
             this.sortName = "按字母顺序"
             var page = this.currentPage
             that.getSourceByCondition(this,3,page,this.condition[2])
@@ -715,7 +715,7 @@ var source1 ={
          * 文件大小
          */
         sizeCho:function(){
-            console.log("文件大小")
+            //console.log("文件大小")
             this.sortName = "按文件大小"
             var page = this.currentPage
             that.getSourceByCondition(this,3,page,this.condition[3])

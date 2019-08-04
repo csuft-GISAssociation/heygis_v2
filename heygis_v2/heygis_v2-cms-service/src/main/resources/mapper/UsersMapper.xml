@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.heygis.cms.mapper.UsersMapper">
+        <select id="querySystemUserByAccountAndPassWord" parameterType="users" resultType="users">
+          SELECT
+            uid,
+            account,
+            identity_id
+          FROM
+            users
+          WHERE
+            account = #{account} and password = #{password} and (identity_id = 1 or identity_id = 2)
+        </select>
+
+        <select id="queryManageUser" resultType="Users">
+            SELECT
+                uid,
+                account
+            FROM
+                users
+            WHERE
+                identity_id = 1
+        </select>
+
+        <delete id="deleteUserByUid" parameterType="int">
+            DELETE
+            FROM
+                users
+            WHERE
+                uid = #{uid} and identity_id = 1
+        </delete>
+
+        <insert id="addManageUser" parameterType="Users">
+          INSERT INTO users (
+            account,
+            PASSWORD,
+            identity_id
+          )
+           VALUES(
+                #{account},#{password},#{identity_id})
+        </insert>
+
+        <select id="queryUserList" resultType="UsersInfo">
+            SELECT
+                uid,
+                icon_img,
+                NAME,
+                nickname,
+                age,
+                grade,
+                QQ,
+                tel,
+                mail
+            FROM
+                users_info
+        </select>
+
+        <delete id="deleteUserByUid1" parameterType="int">
+            DELETE
+            FROM
+                users
+            WHERE
+                uid = #{uid}
+        </delete>
+
+        <delete id="deleteUserInfoByUid" parameterType="int">
+            DELETE
+            FROM
+                users_info
+            WHERE
+                uid = #{uid}
+        </delete>
+
+        <select id="queryUserInfoByNickName" parameterType="string" resultType="UsersInfo">
+          SELECT
+            uid,
+            icon_img,
+            NAME,
+            nickname,
+            age,
+            grade,
+            QQ,
+            tel,
+            mail
+        FROM
+            users_info
+        WHERE
+            nickname LIKE concat('%',#{searchInfo},'%')
+        </select>
+
+</mapper>
